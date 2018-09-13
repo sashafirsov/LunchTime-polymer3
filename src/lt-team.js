@@ -11,6 +11,9 @@
 import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 import '@polymer/paper-input/paper-input.js';
 import '@polymer/paper-button/paper-button.js';
+import '@polymer/paper-radio-button/paper-radio-button.js';
+import '@polymer/paper-radio-group/paper-radio-group.js';
+
 import './shared-styles.js';
 
 class LtTeam extends PolymerElement {
@@ -24,13 +27,13 @@ class LtTeam extends PolymerElement {
         img{ max-width: 10em;max-height: 10em; }
         .card img{ float: right }
         label{ display: inline-block }
-        label img{ display: block }
+        paper-radio-button img{ display: block }
         .team-list{ text-align: center }
-        .team-list input{ opacity: 0 }
+        paper-radio-button { --layout-inline_-_display:none }
         .team-list label{ max-width: 10em }
-        .team-list input:checked~div{ box-shadow: inset 0 0 3em green }
-        .team-list input~div{ border: dashed 2px transparent }
-        .team-list input:focus~div{ border:dashed silver 2px }
+        .team-list paper-radio-button[checked]{ box-shadow: inset 0 0 3em green }
+        .team-list paper-radio-button{ border: dashed 2px transparent }
+        .team-list paper-radio-button:focus{ border:dashed silver 2px }
       </style>
 
       <div class="card">
@@ -42,24 +45,17 @@ class LtTeam extends PolymerElement {
         <paper-button raised onclick="submitForm()">Save</paper-button><br/>
         
       </div>
+      [[selectedId]]
       <div class="team-list">
-        <template is="dom-repeat" items="{{team}}">
-            <label>
-              <input 
-                type="radio"
-                name="collegue"
-                id="[[item.id]]"
-                value="[[item.value]]"
-                checked="{{item.checked::input}}"
-                on-change="radioChanged"
-                />
-              </input>
-              <div>               
-                  [[item.name]]
-                  <img src="[[item.imageUrl]]" />
-              </div>
-         </label>
-        </template>
+        <paper-radio-group selected="{{selectedId}}">
+          <template is="dom-repeat" items="{{team}}">
+            <paper-radio-button name="[[item.id]]" >
+                [[item.name]]
+                <img src="[[item.imageUrl]]" />
+            </paper-radio-button>         
+          </template>
+        </paper-radio-group>
+        
       </div>
     `;
     }
@@ -68,6 +64,7 @@ class LtTeam extends PolymerElement {
         return {
             name: String,
             imageUrl: String,
+            selectedId: String,
             team: {
                 type: Array,
                 value: function(){
