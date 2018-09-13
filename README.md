@@ -1,3 +1,7 @@
+# Setup
+      npm i; rm -rf node_modules/ package-lock.json; npm i
+The second command fixes [dependency bug](https://github.com/PolymerElements/paper-button/issues/174)
+
 # Polymer App Toolbox - Starter Kit
 
 [![Build Status](https://travis-ci.org/Polymer/polymer-starter-kit.svg?branch=master)](https://travis-ci.org/Polymer/polymer-starter-kit)

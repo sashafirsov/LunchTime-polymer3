@@ -1,7 +1,7 @@
 {
-  "name": "My App",
-  "short_name": "My App",
-  "description": "My App description",
+  "name": "Lunch Time",
+  "short_name": "Lunch Time",
+  "description": "Bind the team over coffee or lunch",
   "icons": [
     {
       "src": "images/manifest/icon-192x192.png",
