@@ -1,11 +1,5 @@
 /**
- * @license
- * Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
- * This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
- * The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
- * The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
- * Code distributed by Google as part of the polymer project is also
- * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+ * team list with add and change member ability
  */
 
 import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
@@ -42,7 +36,8 @@ class LtTeam extends PolymerElement {
         <h1>Who am I?   </h1>
         <paper-input always-float-label label="Name"               name="name"      value="{{name}}"    ></paper-input>
         <paper-input always-float-label label="Avatar Image URL"   name="image-url" value="{{imageUrl}}"></paper-input>
-        <paper-button raised onclick="submitForm()"> Save </paper-button><br/>
+        <paper-button raised on-click="_save"    > Update     </paper-button>
+        <paper-button raised on-click="_create"  > Create     </paper-button>
         
       </div>
       <div class="team-list">
@@ -83,6 +78,16 @@ class LtTeam extends PolymerElement {
     }
     _idChanged( id ) {
         Object.assign( this, this.team.find( el=> el.id === id ) );
+    }
+    _save(){
+        const i = this.team.findIndex( el => el.id === this.selectedId );
+        this.set(`team.${i}.name`       , this.name     );
+        this.set(`team.${i}.imageUrl`   , this.imageUrl );
+    }
+    _create(){
+        const o = { id: this.team.length, name: this.name, imageUrl: this.imageUrl };
+        this.unshift( 'team', o );
+        this.selectedId = o.id;
     }
 }
 
