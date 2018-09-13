@@ -40,12 +40,11 @@ class LtTeam extends PolymerElement {
         <img src="[[imageUrl]]" />
         <div class="circle">3</div>
         <h1>Who am I?   </h1>
-        <paper-input always-float-label label="Name"                name="name"     value="{{name}}"    ></paper-input>
+        <paper-input always-float-label label="Name"               name="name"      value="{{name}}"    ></paper-input>
         <paper-input always-float-label label="Avatar Image URL"   name="image-url" value="{{imageUrl}}"></paper-input>
-        <paper-button raised onclick="submitForm()">Save</paper-button><br/>
+        <paper-button raised onclick="submitForm()"> Save </paper-button><br/>
         
       </div>
-      [[selectedId]]
       <div class="team-list">
         <paper-radio-group selected="{{selectedId}}">
           <template is="dom-repeat" items="{{team}}">
@@ -64,7 +63,7 @@ class LtTeam extends PolymerElement {
         return {
             name: String,
             imageUrl: String,
-            selectedId: String,
+            selectedId: { type:String, observer: '_idChanged'},
             team: {
                 type: Array,
                 value: function(){
@@ -81,6 +80,9 @@ class LtTeam extends PolymerElement {
                 }
             },
         };
+    }
+    _idChanged( id ) {
+        Object.assign( this, this.team.find( el=> el.id === id ) );
     }
 }
 
