@@ -63,6 +63,15 @@ class LtTeam extends PolymerElement {
                   team: { type: Array },
         };
     }
+    ready() {
+        if( !this.selected )
+            this.selected = this.team[ this.team.length - 1 ];
+        this.nickname = this.selected.nickname;
+        this.imageUrl = this.selected.imageUrl;
+
+        super.ready();
+    }
+
     _idChanged( id ) {
         const o = this.team.find( el=> el.id === id );
         Object.assign( this, o );
@@ -84,7 +93,8 @@ class LtTeam extends PolymerElement {
 
         const o = { id: this.team.length, nickname: this.nickname, imageUrl: this.imageUrl };
         this.unshift( 'team', o );
-        this.selected = o;
+        this.selected   = o;
+        this.selectedId = o.id;
     }
 }
 

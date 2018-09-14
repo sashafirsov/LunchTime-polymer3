@@ -137,7 +137,7 @@ class MyApp extends PolymerElement {
             },
             routeData: Object,
             subroute: Object,
-            selected: { type:Object, observer: '_idChanged'},
+            selected: Object,
             team: {
                 type: Array,
                 value: [
@@ -191,9 +191,6 @@ class MyApp extends PolymerElement {
         return [
             '_routePageChanged(routeData.page)'
         ];
-    }
-    _idChanged( id ) {
-        console.log(id);
     }
 
     _routePageChanged(page) {
