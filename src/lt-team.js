@@ -42,7 +42,7 @@ class LtTeam extends PolymerElement {
       </div>
       <div class="team-list">
         <paper-radio-group selected="{{selectedId}}">
-          <template is="dom-repeat" items="{{team}}">
+          <template is="dom-repeat" items="[[team]]">
             <paper-radio-button name="[[item.id]]" >
                 [[item.nickname]]
                 <img src="[[item.imageUrl]]" />
@@ -85,8 +85,11 @@ class LtTeam extends PolymerElement {
     }
     _save(){
         this._fixPersonal();
+        let i = this.team.indexOf( this.selected );
         this.set(`selected.nickname`   , this.nickname );
         this.set(`selected.imageUrl`   , this.imageUrl );
+        this.notifyPath(`team.${i}.nickname`  , this.nickname );
+        this.notifyPath(`team.${i}.imageUrl`  , this.imageUrl );
     }
     _create(){
         this._fixPersonal();
