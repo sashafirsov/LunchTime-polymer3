@@ -8,8 +8,8 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import { setPassiveTouchGestures, setRootPath } from '@polymer/polymer/lib/utils/settings.js';
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+import {setPassiveTouchGestures, setRootPath} from '@polymer/polymer/lib/utils/settings.js';
 import '@polymer/app-layout/app-drawer/app-drawer.js';
 import '@polymer/app-layout/app-drawer-layout/app-drawer-layout.js';
 import '@polymer/app-layout/app-header/app-header.js';
@@ -32,8 +32,8 @@ setPassiveTouchGestures(true);
 setRootPath(MyAppGlobals.rootPath);
 
 class MyApp extends PolymerElement {
-  static get template() {
-    return html`
+    static get template() {
+        return html`
       <style>
         :host {
           --app-primary-color: #4285f4;
@@ -71,6 +71,9 @@ class MyApp extends PolymerElement {
           color: black;
           font-weight: bold;
         }
+        .disclaimer{font-family: cursive; text-align: right;}
+        img{ max-width: 100%;}
+        .selected{ font-family: monospace; text-align: right;}
       </style>
 
       <app-location route="{{route}}" url-space-regex="^[[rootPath]]">
@@ -87,8 +90,20 @@ class MyApp extends PolymerElement {
             <a name="view1" href="[[rootPath]]view1">Coffee </a>
             <a name="view2" href="[[rootPath]]view2">Lunch  </a>
             <!--<a name="view3" href="[[rootPath]]view3">Team   </a>-->
-            <a name="team"  href="[[rootPath]]team" >Team   </a>
-          </iron-selector>
+            <a name="team"  href="[[rootPath]]team" >
+                Team   
+                <template is="dom-if" if="{{selected}}">
+                    <div class="selected">
+                        I am [[selected.nickname]]
+                        <img src="[[selected.imageUrl]]" />
+                    </div>
+                </template>  
+            </a>          
+         </iron-selector>
+         <div class="disclaimer">
+         Images by <a href="http://www.stickpng.com/es/cat/al-cine/dibujos-animados/blancanieves?page=1">stickpng.com</a><br/>
+         &copy; Sasha Firsov
+         </div>
         </app-drawer>
 
         <!-- Main content -->
@@ -105,74 +120,124 @@ class MyApp extends PolymerElement {
             <my-view1 name="view1"></my-view1>
             <my-view2 name="view2"></my-view2>
             <my-view3 name="view3"></my-view3>
-            <lt-team  name="team" ></lt-team>
+            <lt-team  name="team" team="[[team]]"  selected="{{selected}}" ></lt-team>
             <my-view404 name="view404"></my-view404>
           </iron-pages>
         </app-header-layout>
       </app-drawer-layout>
     `;
-  }
-
-  static get properties() {
-    return {
-      page: {
-        type: String,
-        reflectToAttribute: true,
-        observer: '_pageChanged'
-      },
-      routeData: Object,
-      subroute: Object
-    };
-  }
-
-  static get observers() {
-    return [
-      '_routePageChanged(routeData.page)'
-    ];
-  }
-
-  _routePageChanged(page) {
-     // Show the corresponding page according to the route.
-     //
-     // If no page was found in the route data, page will be an empty string.
-     // Show 'view1' in that case. And if the page doesn't exist, show 'view404'.
-    if (!page) {
-      this.page = 'view1';
-    } else if (['view1', 'view2', 'view3','team'].indexOf(page) !== -1) {
-      this.page = page;
-    } else {
-      this.page = 'view404';
     }
 
-    // Close a non-persistent drawer when the page & route are changed.
-    if (!this.$.drawer.persistent) {
-      this.$.drawer.close();
-    }
-  }
+    static get properties() {
+        return {
+            page: {
+                type: String,
+                reflectToAttribute: true,
+                observer: '_pageChanged'
+            },
+            routeData: Object,
+            subroute: Object,
+            selected: { type:Object, observer: '_idChanged'},
+            team: {
+                type: Array,
+                value: [
+                        {
+                            id: 1,
+                            nickname: 'Snow ',
+                            imageUrl: 'http://www.stickpng.com/assets/images/5874d04142e4d628738559ee.png'
+                        },
+                        {
+                            id: 2,
+                            nickname: 'Sneeze',
+                            imageUrl: 'http://www.stickpng.com/assets/images/5874d0a042e4d628738559f0.png'
+                        },
+                        {
+                            id: 3,
+                            nickname: 'Bashful',
+                            imageUrl: 'http://www.stickpng.com/assets/images/5874d0ac42e4d628738559f1.png'
+                        },
+                        {
+                            id: 4,
+                            nickname: 'Dopey',
+                            imageUrl: 'http://www.stickpng.com/assets/images/5874d0cb42e4d628738559f2.png'
+                        },
+                        {
+                            id: 5,
+                            nickname: 'Grumpy',
+                            imageUrl: 'http://www.stickpng.com/assets/images/5874d0d642e4d628738559f3.png'
+                        },
+                        {
+                            id: 6,
+                            nickname: 'Sleepy',
+                            imageUrl: 'http://www.stickpng.com/assets/images/5874d02942e4d628738559ec.png'
+                        },
+                        {
+                            id: 7,
+                            nickname: 'Doc',
+                            imageUrl: 'http://www.stickpng.com/assets/images/5874cfce42e4d628738559e7.png'
+                        },
+                        {
+                            id: 8,
+                            nickname: 'Happy',
+                            imageUrl: 'http://www.stickpng.com/assets/images/5874d00c42e4d628738559ea.png'
+                        }
+                        ]
 
-  _pageChanged(page) {
-    // Import the page component on demand.
-    //
-    // Note: `polymer build` doesn't like string concatenation in the import
-    // statement, so break it up.
-    switch (page) {
-      case 'view1':
-        import('./my-view1.js');
-        break;
-      case 'view2':
-        import('./my-view2.js');
-        break;
-      case 'view3':
-        import('./my-view3.js');
-        break;
-      case 'team':
-        import('./lt-team.js');
-        break;
-      case 'view404':
-        import('./my-view404.js');
-        break;
+            }
+        };
     }
-  }
+
+    static get observers() {
+        return [
+            '_routePageChanged(routeData.page)'
+        ];
+    }
+    _idChanged( id ) {
+        console.log(id);
+    }
+
+    _routePageChanged(page) {
+        // Show the corresponding page according to the route.
+        //
+        // If no page was found in the route data, page will be an empty string.
+        // Show 'view1' in that case. And if the page doesn't exist, show 'view404'.
+        if (!page) {
+            this.page = 'team';
+        } else if (['view1', 'view2', 'view3', 'team'].indexOf(page) !== -1) {
+            this.page = page;
+        } else {
+            this.page = 'view404';
+        }
+
+        // Close a non-persistent drawer when the page & route are changed.
+        if (!this.$.drawer.persistent) {
+            this.$.drawer.close();
+        }
+    }
+
+    _pageChanged(page) {
+        // Import the page component on demand.
+        //
+        // Note: `polymer build` doesn't like string concatenation in the import
+        // statement, so break it up.
+        switch (page) {
+            case 'view1':
+                import('./my-view1.js');
+                break;
+            case 'view2':
+                import('./my-view2.js');
+                break;
+            case 'view3':
+                import('./my-view3.js');
+                break;
+            case 'team':
+                import('./lt-team.js');
+                break;
+            case 'view404':
+                import('./my-view404.js');
+                break;
+        }
+    }
 }
 
 window.customElements.define('my-app', MyApp);

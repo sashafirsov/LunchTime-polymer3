@@ -32,19 +32,19 @@ class LtTeam extends PolymerElement {
 
       <div class="card">
         <img src="[[imageUrl]]" />
-        <div class="circle">3</div>
+        <div class="intro">Lets get someone random to go get coffee or join group for lunch
+        </div>
         <h1>Who am I?   </h1>
-        <paper-input always-float-label label="Name"               name="name"      value="{{name}}"    ></paper-input>
-        <paper-input always-float-label label="Avatar Image URL"   name="image-url" value="{{imageUrl}}"></paper-input>
+        <paper-input always-float-label label="Nickname"           name="nickname"  value="{{nickname}}" ></paper-input>
+        <paper-input always-float-label label="Avatar Image URL"   name="image-url" value="{{imageUrl}}" ></paper-input>
         <paper-button raised on-click="_save"    > Update     </paper-button>
         <paper-button raised on-click="_create"  > Create     </paper-button>
-        
       </div>
       <div class="team-list">
         <paper-radio-group selected="{{selectedId}}">
           <template is="dom-repeat" items="{{team}}">
             <paper-radio-button name="[[item.id]]" >
-                [[item.name]]
+                [[item.nickname]]
                 <img src="[[item.imageUrl]]" />
             </paper-radio-button>         
           </template>
@@ -56,38 +56,35 @@ class LtTeam extends PolymerElement {
 
     static get properties() {
         return {
-            name: String,
-            imageUrl: String,
-            selectedId: { type:String, observer: '_idChanged'},
-            team: {
-                type: Array,
-                value: function(){
-                    return [
-                        { id: 1, name: 'Snow '      , imageUrl: 'http://www.stickpng.com/assets/images/5874d04142e4d628738559ee.png'},
-                        { id: 2, name: 'Sneeze'     , imageUrl: 'http://www.stickpng.com/assets/images/5874d0a042e4d628738559f0.png'},
-                        { id: 3, name: 'Bashful'    , imageUrl: 'http://www.stickpng.com/assets/images/5874d0ac42e4d628738559f1.png'},
-                        { id: 4, name: 'Dopey'      , imageUrl: 'http://www.stickpng.com/assets/images/5874d0cb42e4d628738559f2.png'},
-                        { id: 5, name: 'Grumpy'     , imageUrl: 'http://www.stickpng.com/assets/images/5874d0d642e4d628738559f3.png'},
-                        { id: 6, name: 'Sleepy'     , imageUrl: 'http://www.stickpng.com/assets/images/5874d02942e4d628738559ec.png'},
-                        { id: 7, name: 'Doc'        , imageUrl: 'http://www.stickpng.com/assets/images/5874cfce42e4d628738559e7.png'},
-                        { id: 8, name: 'Happy'      , imageUrl: 'http://www.stickpng.com/assets/images/5874d00c42e4d628738559ea.png'}
-                    ];
-                }
-            },
+              nickname: String,
+              imageUrl: String,
+            selectedId: { type:String, observer: '_idChanged', notify: true },
+              selected: { type:Object , notify: true },
+                  team: { type: Array },
         };
     }
     _idChanged( id ) {
-        Object.assign( this, this.team.find( el=> el.id === id ) );
+        const o = this.team.find( el=> el.id === id );
+        Object.assign( this, o );
+        this.set('selected', o);
+    }
+    _fixPersonal(){
+        if( !this.nickname )
+            this.nickname = "Anonymous";
+        if( !this.imageUrl )
+            this.imageUrl = "http://www.stickpng.com/assets/images/5874cfb542e4d628738559e5.png";
     }
     _save(){
-        const i = this.team.findIndex( el => el.id === this.selectedId );
-        this.set(`team.${i}.name`       , this.name     );
-        this.set(`team.${i}.imageUrl`   , this.imageUrl );
+        this._fixPersonal();
+        this.set(`selected.nickname`   , this.nickname );
+        this.set(`selected.imageUrl`   , this.imageUrl );
     }
     _create(){
-        const o = { id: this.team.length, name: this.name, imageUrl: this.imageUrl };
+        this._fixPersonal();
+
+        const o = { id: this.team.length, nickname: this.nickname, imageUrl: this.imageUrl };
         this.unshift( 'team', o );
-        this.selectedId = o.id;
+        this.selected = o;
     }
 }
 
