@@ -1,11 +1,11 @@
-export function matchCofee( team, seeker )
+export function matchCoffee( team, seeker )
 {
     return team.filter( el=> el.id != seeker.id && !seeker.coffeeBreaks.includes(el.id) );
 }
-export function bookCofee( team, seeker, pair )
+export function bookCoffee( team, seeker, pair )
 {
     seeker.coffeeBreaks.push( pair  .id );
     pair  .coffeeBreaks.push( seeker.id );
-    return matchCofee( team, seeker );
+    return matchCoffee( team, seeker );
 }
 

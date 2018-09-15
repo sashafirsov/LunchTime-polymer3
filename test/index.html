@@ -20,11 +20,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </head>
   <body>
     <script>
+
+      // http://127.0.0.1:8081/components/polymer-starter-kit/test/index.html
+
       WCT.loadSuites([
         // Load 'my-view1.html' test suite, using native shadow dom
         'my-view1.html?dom=shadow',
         // Load 'my-view1.html' test suite, using shadydom
         'my-view1.html?wc-shadydom=true',
+        'match-coffee.test.html?wc-shadydom=true',
       ]);
     </script>
   </body>
