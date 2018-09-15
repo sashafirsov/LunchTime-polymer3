@@ -88,10 +88,11 @@ class MyApp extends PolymerElement {
           <app-toolbar>Menu</app-toolbar>
           <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
             <!--<a name="view1" href="[[rootPath]]view1">Coffee </a>-->
-            <a name="coffee" href="[[rootPath]]coffee">Coffee </a>
-            <a name="view2" href="[[rootPath]]view2">Lunch  </a>
+            <!--<a name="view2" href="[[rootPath]]view2">Lunch  </a>-->
             <!--<a name="view3" href="[[rootPath]]view3">Team   </a>-->
-            <a name="team"  href="[[rootPath]]team" >
+            <a name="coffee" href="[[rootPath]]coffee">Coffee </a>
+            <a name="lunch"  href="[[rootPath]]lunch" >Lunch  </a>
+            <a name="team"   href="[[rootPath]]team"  >
                 Team   
                 <template is="dom-if" if="{{selected}}">
                     <div class="selected">
@@ -118,9 +119,11 @@ class MyApp extends PolymerElement {
           </app-header>
 
           <iron-pages selected="[[page]]" attr-for-selected="name" role="main">
-            <my-view2 name="view2"></my-view2>
-            <my-view3 name="view3"></my-view3>
+            <!--<my-view1 name="view1"></my-view1>-->
+            <!--<my-view2 name="view2"></my-view2>-->
+            <!--<my-view3 name="view3"></my-view3>-->
             <lt-coffee  name="coffee" team="[[team]]"  seeker="[[selected]]"   ></lt-coffee>
+            <lt-lunch   name="lunch"  team="[[team]]"  seeker="[[selected]]"   ></lt-lunch>
             <lt-team    name="team"   team="[[team]]"  selected="{{selected}}" ></lt-team>
             <my-view404 name="view404"></my-view404>
           </iron-pages>
@@ -210,7 +213,7 @@ class MyApp extends PolymerElement {
         // Show 'team' in that case. And if the page doesn't exist, show 'view404'.
         if (!page) {
             this.page = 'team';
-        } else if (['coffee', 'view2', 'view3', 'team'].indexOf(page) !== -1) {
+        } else if ([ 'coffee', 'lunch', 'team', 'view1', 'view2', 'view3' ].indexOf(page) !== -1) {
             if( !this.selected && page!== 'team' )
                 return this.set('routeData.page','team');
             this.page = page;
@@ -244,6 +247,9 @@ class MyApp extends PolymerElement {
                 break;
             case 'coffee':
                 import('./lt-coffee.js');
+                break;
+            case 'lunch':
+                import('./lt-lunch.js');
                 break;
             case 'view404':
                 import('./my-view404.js');
