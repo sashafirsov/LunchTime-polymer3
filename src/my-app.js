@@ -207,10 +207,12 @@ class MyApp extends PolymerElement {
         // Show the corresponding page according to the route.
         //
         // If no page was found in the route data, page will be an empty string.
-        // Show 'view1' in that case. And if the page doesn't exist, show 'view404'.
+        // Show 'team' in that case. And if the page doesn't exist, show 'view404'.
         if (!page) {
             this.page = 'team';
         } else if (['coffee', 'view2', 'view3', 'team'].indexOf(page) !== -1) {
+            if( !this.selected && page!== 'team' )
+                return this.set('routeData.page','team');
             this.page = page;
         } else {
             this.page = 'view404';
