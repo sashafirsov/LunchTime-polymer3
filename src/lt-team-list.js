@@ -38,8 +38,6 @@ class LtTeamList extends PolymerElement {
 
     static get properties() {
         return {
-              nickname: { type:String, notify: true },
-              imageUrl: { type:String, notify: true },
             selectedId: { type:String, observer: '_idChanged', notify: true },
               selected: { type:Object , notify: true },
                   team: { type: Array },
@@ -48,8 +46,6 @@ class LtTeamList extends PolymerElement {
     ready() {
         if( !this.selected )
             this.selected = this.team[ this.team.length - 1 ];
-        this.nickname = this.selected.nickname;
-        this.imageUrl = this.selected.imageUrl;
 
         super.ready();
     }

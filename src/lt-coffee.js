@@ -9,7 +9,7 @@ import '@polymer/paper-radio-button/paper-radio-button.js';
 import '@polymer/paper-radio-group/paper-radio-group.js';
 
 import './shared-styles.js';
-import {matchCofee, bookCofee} from './match-coffee';
+import {matchCoffee, bookCoffee} from './match-coffee';
 
 class LtCoffee extends PolymerElement {
     static get template() {
@@ -43,7 +43,10 @@ class LtCoffee extends PolymerElement {
             
                 <paper-button raised on-click="_save"> Lets go!</paper-button>
             </div>
-            <lt-team-list selected="{{selected}}" team="[[coffeeCandidates]]" ></lt-team-list>        
+            <lt-team-list selected="{{selected}}" team="[[coffeeCandidates]]" ></lt-team-list>  
+            <hr/>  
+            <h3>Caffeinated together</h3>    
+            <lt-team-list team="[[caffeinated]]" ></lt-team-list>        
         `;
     }
 
@@ -53,6 +56,7 @@ class LtCoffee extends PolymerElement {
             selected: Object,
             team: Array,
             coffeeCandidates: Array,
+            caffeinated: {type:Array,value:[]}
         };
     }
 
@@ -62,16 +66,16 @@ class LtCoffee extends PolymerElement {
         super.ready();
     }
 
+    updateCaffeinated(){ this.caffeinated = this.seeker.coffeeBreaks.map( id=> this.team.find( el=> el.id===id ) ) }
+
     _seekerChanged(){
-        this.coffeeCandidates = matchCofee( this.team, this.seeker );
+        this.coffeeCandidates = matchCoffee( this.team, this.seeker );
+        this.updateCaffeinated();
     }
 
     _save() {
-        let i = this.team.indexOf(this.selected);
-        this.set(`selected.nickname`, this.nickname);
-        this.set(`selected.imageUrl`, this.imageUrl);
-        this.notifyPath(`team.${i}.nickname`, this.nickname);
-        this.notifyPath(`team.${i}.imageUrl`, this.imageUrl);
+        this.coffeeCandidates = bookCoffee( this.team, this.seeker, this.selected );
+        this.updateCaffeinated();
     }
 
 }

@@ -73,7 +73,7 @@ class LtTeam extends PolymerElement {
     _create(){
         this._fixPersonal();
 
-        const o = { id: this.team.length, nickname: this.nickname, imageUrl: this.imageUrl };
+        const o = { id: this.team.length, nickname: this.nickname, imageUrl: this.imageUrl, coffeeBreaks:[] };
         this.unshift( 'team', o );
         this.selected   = o;
         this.selectedId = o.id;
