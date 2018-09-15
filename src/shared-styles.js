@@ -40,6 +40,15 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
         color: #212121;
         font-size: 22px;
       }
+      paper-radio-button img{ display: block }
+      paper-radio-button{ --layout-inline_-_display:none }
+      paper-radio-button[checked]{ box-shadow: inset 0 0 3em green }
+      paper-radio-button{ border: dashed 2px transparent }
+      paper-radio-button:focus{ border:dashed silver 2px }
+      paper-radio-button div{ text-align: center  }
+      .team-list{ text-align: center }
+      .team-list label{ max-width: 10em }
+      
     </style>
   </template>
 </dom-module>`;

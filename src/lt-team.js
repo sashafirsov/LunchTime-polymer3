@@ -9,48 +9,32 @@ import '@polymer/paper-radio-button/paper-radio-button.js';
 import '@polymer/paper-radio-group/paper-radio-group.js';
 
 import './shared-styles.js';
+import './lt-team-list.js';
 
 class LtTeam extends PolymerElement {
     static get template() {
         return html`
-      <style include="shared-styles">
-        :host {
-          display: block;
-          padding: 10px;
-        }
-        img{ max-width: 10em;max-height: 10em; }
-        .card img{ float: right }
-        label{ display: inline-block }
-        paper-radio-button img{ display: block }
-        .team-list{ text-align: center }
-        paper-radio-button { --layout-inline_-_display:none }
-        .team-list label{ max-width: 10em }
-        .team-list paper-radio-button[checked]{ box-shadow: inset 0 0 3em green }
-        .team-list paper-radio-button{ border: dashed 2px transparent }
-        .team-list paper-radio-button:focus{ border:dashed silver 2px }
-      </style>
-
-      <div class="card">
-        <img src="[[imageUrl]]" />
-        <p>Lets get someone random to go get coffee or join group for lunch  </p>
-        <h1>Who am I?   </h1>
-        <paper-input always-float-label label="Nickname"           name="nickname"  value="{{nickname}}" ></paper-input>
-        <paper-input always-float-label label="Avatar Image URL"   name="image-url" value="{{imageUrl}}" ></paper-input>
-        <paper-button raised on-click="_save"    > Update     </paper-button>
-        <paper-button raised on-click="_create"  > Create     </paper-button>
-      </div>
-      <div class="team-list">
-        <paper-radio-group selected="{{selectedId}}">
-          <template is="dom-repeat" items="[[team]]">
-            <paper-radio-button name="[[item.id]]" >
-                [[item.nickname]]
-                <img src="[[item.imageUrl]]" />
-            </paper-radio-button>         
-          </template>
-        </paper-radio-group>
-        
-      </div>
-    `;
+            <style include="shared-styles">
+                :host {
+                  display: block;
+                  padding: 10px;
+                }
+                img{ max-width: 10em;max-height: 10em; }
+                .card img{ float: right }
+                label{ display: inline-block }
+            </style>
+    
+            <div class="card">
+                <img src="[[imageUrl]]" />
+                <p>Lets get someone random to go get coffee or join group for lunch  </p>
+                <h1>Who am I?   </h1>
+                <paper-input always-float-label label="Nickname"           name="nickname"  value="{{nickname}}" ></paper-input>
+                <paper-input always-float-label label="Avatar Image URL"   name="image-url" value="{{imageUrl}}" ></paper-input>
+                <paper-button raised on-click="_save"    > Update     </paper-button>
+                <paper-button raised on-click="_create"  > Create     </paper-button>
+            </div>
+            <lt-team-list selected="{{selected}}" team="[[team]]" nickname="{{nickname}}" image-url="{{imageUrl}}" selected-id="{{selectedId}}"></lt-team-list>
+        `;
     }
 
     static get properties() {
@@ -65,17 +49,13 @@ class LtTeam extends PolymerElement {
     ready() {
         if( !this.selected )
             this.selected = this.team[ this.team.length - 1 ];
-        this.nickname = this.selected.nickname;
-        this.imageUrl = this.selected.imageUrl;
+        this.nickname   = this.selected.nickname;
+        this.imageUrl   = this.selected.imageUrl;
+        this.selectedId = this.selected.id;
 
         super.ready();
     }
 
-    _idChanged( id ) {
-        const o = this.team.find( el=> el.id === id );
-        Object.assign( this, o );
-        this.set('selected', o);
-    }
     _fixPersonal(){
         if( !this.nickname )
             this.nickname = "Anonymous";
