@@ -87,7 +87,8 @@ class MyApp extends PolymerElement {
         <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
           <app-toolbar>Menu</app-toolbar>
           <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-            <a name="view1" href="[[rootPath]]view1">Coffee </a>
+            <!--<a name="view1" href="[[rootPath]]view1">Coffee </a>-->
+            <a name="coffee" href="[[rootPath]]coffee">Coffee </a>
             <a name="view2" href="[[rootPath]]view2">Lunch  </a>
             <!--<a name="view3" href="[[rootPath]]view3">Team   </a>-->
             <a name="team"  href="[[rootPath]]team" >
@@ -117,10 +118,10 @@ class MyApp extends PolymerElement {
           </app-header>
 
           <iron-pages selected="[[page]]" attr-for-selected="name" role="main">
-            <my-view1 name="view1"></my-view1>
             <my-view2 name="view2"></my-view2>
             <my-view3 name="view3"></my-view3>
-            <lt-team  name="team" team="[[team]]"  selected="{{selected}}" ></lt-team>
+            <lt-coffee  name="coffee" team="[[team]]"  seeker="[[selected]]" ></lt-coffee>
+            <lt-team    name="team"   team="[[team]]"  selected="{{selected}}" ></lt-team>
             <my-view404 name="view404"></my-view404>
           </iron-pages>
         </app-header-layout>
@@ -200,7 +201,7 @@ class MyApp extends PolymerElement {
         // Show 'view1' in that case. And if the page doesn't exist, show 'view404'.
         if (!page) {
             this.page = 'team';
-        } else if (['view1', 'view2', 'view3', 'team'].indexOf(page) !== -1) {
+        } else if (['coffee', 'view2', 'view3', 'team'].indexOf(page) !== -1) {
             this.page = page;
         } else {
             this.page = 'view404';
@@ -229,6 +230,9 @@ class MyApp extends PolymerElement {
                 break;
             case 'team':
                 import('./lt-team.js');
+                break;
+            case 'coffee':
+                import('./lt-coffee.js');
                 break;
             case 'view404':
                 import('./my-view404.js');

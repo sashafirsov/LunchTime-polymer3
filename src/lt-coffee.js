@@ -10,7 +10,7 @@ import '@polymer/paper-radio-group/paper-radio-group.js';
 
 import './shared-styles.js';
 
-class LtTeam extends PolymerElement {
+class LtCoffee extends PolymerElement {
     static get template() {
         return html`
       <style include="shared-styles">
@@ -21,23 +21,34 @@ class LtTeam extends PolymerElement {
         img{ max-width: 10em;max-height: 10em; }
         .card img{ float: right }
         label{ display: inline-block }
-        paper-radio-button img{ display: block }
         .team-list{ text-align: center }
-        paper-radio-button { --layout-inline_-_display:none }
         .team-list label{ max-width: 10em }
-        .team-list paper-radio-button[checked]{ box-shadow: inset 0 0 3em green }
-        .team-list paper-radio-button{ border: dashed 2px transparent }
-        .team-list paper-radio-button:focus{ border:dashed silver 2px }
+        paper-radio-button img{ display: block }
+        paper-radio-button{ --layout-inline_-_display:none }
+        paper-radio-button[checked]{ box-shadow: inset 0 0 3em green }
+        paper-radio-button{ border: dashed 2px transparent }
+        paper-radio-button:focus{ border:dashed silver 2px }
+        paper-radio-button div{ text-align: center  }
       </style>
 
-      <div class="card">
-        <img src="[[imageUrl]]" />
-        <p>Lets get someone random to go get coffee or join group for lunch  </p>
-        <h1>Who am I?   </h1>
-        <paper-input always-float-label label="Nickname"           name="nickname"  value="{{nickname}}" ></paper-input>
-        <paper-input always-float-label label="Avatar Image URL"   name="image-url" value="{{imageUrl}}" ></paper-input>
-        <paper-button raised on-click="_save"    > Update     </paper-button>
-        <paper-button raised on-click="_create"  > Create     </paper-button>
+      <div class="card" style="text-align: center">        
+        <h1>Lets get coffee with someone random  </h1>
+        <div >
+            <paper-radio-button>
+                <div> [[seeker.nickname]] </div>
+                <img src="[[seeker.imageUrl]]" />
+            </paper-radio-button>
+            <paper-radio-button>
+                <div>  </div>
+                <img src="http://www.stickpng.com/assets/images/5a01907e7ca233f48ba62720.png" />
+            </paper-radio-button>
+            <paper-radio-button>
+                <div> [[selected.nickname]] </div>
+                <img src="[[selected.imageUrl]]" />
+            </paper-radio-button>
+        </div>
+        
+        <paper-button raised on-click="_save"    > Lets go!     </paper-button>
       </div>
       <div class="team-list">
         <paper-radio-group selected="{{selectedId}}">
@@ -55,8 +66,7 @@ class LtTeam extends PolymerElement {
 
     static get properties() {
         return {
-              nickname: String,
-              imageUrl: String,
+                seeker: Object,
             selectedId: { type:String, observer: '_idChanged', notify: true },
               selected: { type:Object , notify: true },
                   team: { type: Array },
@@ -100,4 +110,4 @@ class LtTeam extends PolymerElement {
     }
 }
 
-window.customElements.define('lt-team', LtTeam);
+window.customElements.define('lt-coffee', LtCoffee);
