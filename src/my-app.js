@@ -120,7 +120,7 @@ class MyApp extends PolymerElement {
           <iron-pages selected="[[page]]" attr-for-selected="name" role="main">
             <my-view2 name="view2"></my-view2>
             <my-view3 name="view3"></my-view3>
-            <lt-coffee  name="coffee" team="[[team]]"  seeker="[[selected]]" ></lt-coffee>
+            <lt-coffee  name="coffee" team="[[team]]"  seeker="[[selected]]"   ></lt-coffee>
             <lt-team    name="team"   team="[[team]]"  selected="{{selected}}" ></lt-team>
             <my-view404 name="view404"></my-view404>
           </iron-pages>
@@ -141,48 +141,57 @@ class MyApp extends PolymerElement {
             selected: Object,
             team: {
                 type: Array,
-                value: [
+                value:
+                    [
                         {
                             id: 1,
                             nickname: 'Snow ',
+                            coffeeBreaks:[],
                             imageUrl: 'http://www.stickpng.com/assets/images/5874d04142e4d628738559ee.png'
                         },
                         {
                             id: 2,
                             nickname: 'Sneeze',
+                            coffeeBreaks:[],
                             imageUrl: 'http://www.stickpng.com/assets/images/5874d0a042e4d628738559f0.png'
                         },
                         {
                             id: 3,
                             nickname: 'Bashful',
+                            coffeeBreaks:[],
                             imageUrl: 'http://www.stickpng.com/assets/images/5874d0ac42e4d628738559f1.png'
                         },
                         {
                             id: 4,
                             nickname: 'Dopey',
+                            coffeeBreaks:[],
                             imageUrl: 'http://www.stickpng.com/assets/images/5874d0cb42e4d628738559f2.png'
                         },
                         {
                             id: 5,
                             nickname: 'Grumpy',
+                            coffeeBreaks:[],
                             imageUrl: 'http://www.stickpng.com/assets/images/5874d0d642e4d628738559f3.png'
                         },
                         {
                             id: 6,
                             nickname: 'Sleepy',
+                            coffeeBreaks:[],
                             imageUrl: 'http://www.stickpng.com/assets/images/5874d02942e4d628738559ec.png'
                         },
                         {
                             id: 7,
                             nickname: 'Doc',
+                            coffeeBreaks:[],
                             imageUrl: 'http://www.stickpng.com/assets/images/5874cfce42e4d628738559e7.png'
                         },
                         {
                             id: 8,
                             nickname: 'Happy',
+                            coffeeBreaks:[],
                             imageUrl: 'http://www.stickpng.com/assets/images/5874d00c42e4d628738559ea.png'
                         }
-                        ]
+                    ]
 
             }
         };

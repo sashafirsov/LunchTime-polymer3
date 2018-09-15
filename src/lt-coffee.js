@@ -9,6 +9,7 @@ import '@polymer/paper-radio-button/paper-radio-button.js';
 import '@polymer/paper-radio-group/paper-radio-group.js';
 
 import './shared-styles.js';
+import {matchCofee, bookCofee} from './match-coffee';
 
 class LtCoffee extends PolymerElement {
     static get template() {
@@ -27,7 +28,7 @@ class LtCoffee extends PolymerElement {
                 <h1>Lets get coffee with someone random </h1>
                 <div>
                     <paper-radio-button>
-                        <div> [[seeker.nickname]]</div>
+                        <div> [[seeker.nickname]] </div>
                         <img src="[[seeker.imageUrl]]"/>
                     </paper-radio-button>
                     <paper-radio-button>
@@ -42,26 +43,28 @@ class LtCoffee extends PolymerElement {
             
                 <paper-button raised on-click="_save"> Lets go!</paper-button>
             </div>
-            <lt-team-list selected="{{selected}}" team="[[team]]" ></lt-team-list>        
+            <lt-team-list selected="{{selected}}" team="[[coffeeCandidates]]" ></lt-team-list>        
         `;
     }
 
     static get properties() {
         return {
-            seeker: Object,
+            seeker: {type:Object, observer: '_seekerChanged'},
             selected: Object,
             team: Array,
+            coffeeCandidates: Array,
         };
     }
 
     ready() {
-        if (!this.selected)
-            this.selected = this.team[this.team.length - 1];
-
+        this._seekerChanged();
+        this.selected = this.coffeeCandidates[0];
         super.ready();
     }
 
-
+    _seekerChanged(){
+        this.coffeeCandidates = matchCofee( this.team, this.seeker );
+    }
 
     _save() {
         let i = this.team.indexOf(this.selected);
