@@ -23,6 +23,6 @@ export function generateLunchGroup( team, luncheons, seeker )
 }
 export function bookLunchGroup( table, luncheons )
 {
-    luncheons.unshift( table );
+    luncheons.push( table );
 }
 

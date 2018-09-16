@@ -35,7 +35,7 @@ class LtLunch extends PolymerElement {
                 <hr/>  
                 <h3>Past lunch groups</h3>    
                 
-                <template is="dom-repeat" items="[[candidateLunches]]">
+                <template is="dom-repeat" items="[[candidateLunches]]" >
                     <div class="card">
                         <lt-team-list team="[[item]]" ></lt-team-list>
                     </div>     
@@ -65,7 +65,7 @@ class LtLunch extends PolymerElement {
     }
 
     updateLuncheons(){
-        this.candidateLunches = this.luncheons.filter( table=>table.find(chair=> chair.id === this.seeker.id) );
+        this.candidateLunches = this.luncheons.filter( table=>table.find(chair=> chair.id === this.seeker.id) ).reverse();
         this.unengaged = this.team.filter( f=> !this.luncheons.find( table=>table.find( chair=> chair.id === f.id )
                                                                          && table.find( chair=> chair.id === this.seeker.id ) )
                                          );
