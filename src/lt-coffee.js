@@ -75,7 +75,8 @@ class LtCoffee extends PolymerElement {
 
     _save() {
         this.coffeeCandidates = bookCoffee( this.team, this.seeker, this.selected );
-        this.updateCaffeinated();
+        this.selected = this.coffeeCandidates[0];
+        this._seekerChanged();
     }
 
 }
