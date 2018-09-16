@@ -2,6 +2,15 @@
       npm i; rm -rf node_modules/ package-lock.json; npm i
 The second command fixes [dependency bug](https://github.com/PolymerElements/paper-button/issues/174)
 
+## Run locally
+      polymer serve --open
+
+## Local test
+      polymer test -l chrome
+      
+or open in browser [/components/polymer-starter-kit/test/index.html](http://127.0.0.1:8081/components/polymer-starter-kit/test/index.html)
+and any html file in test/ subfolder to use browser's debug tools.       
+
 # Polymer App Toolbox - Starter Kit
 
 [![Build Status](https://travis-ci.org/Polymer/polymer-starter-kit.svg?branch=master)](https://travis-ci.org/Polymer/polymer-starter-kit)
