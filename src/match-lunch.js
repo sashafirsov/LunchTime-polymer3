@@ -6,7 +6,7 @@ export function generateLunchGroup( team, luncheons, seeker )
     ,            ret = [seeker];
 
     // set to engaged if folk was in luncheon with seeker, otherwise to unengaged
-    candidates.forEach( folk =>  (  luncheons.find( table => table.find( folk.id ) && table.find( seeker.id ) )
+    candidates.forEach( folk =>  (  luncheons.find( table => table.find( chair => folk.id === chair.id ) && table.find( chair => chair.id === seeker.id ) )
                                     ? engaged
                                     : unengaged
                                  ).push( folk ) );
