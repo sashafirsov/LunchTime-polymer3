@@ -62,7 +62,6 @@ class LtCoffee extends PolymerElement {
 
     ready() {
         this._seekerChanged();
-        this.selected = this.coffeeCandidates[0];
         super.ready();
     }
 
@@ -70,12 +69,12 @@ class LtCoffee extends PolymerElement {
 
     _seekerChanged(){
         this.coffeeCandidates = matchCoffee( this.team, this.seeker );
+        this.selected = this.coffeeCandidates[ Math.floor( Math.random() * this.coffeeCandidates.length ) ];
         this.updateCaffeinated();
     }
 
     _save() {
-        this.coffeeCandidates = bookCoffee( this.team, this.seeker, this.selected );
-        this.selected = this.coffeeCandidates[0];
+        bookCoffee( this.team, this.seeker, this.selected );
         this._seekerChanged();
     }
 
