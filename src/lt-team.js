@@ -42,7 +42,7 @@ class LtTeam extends PolymerElement {
               nickname: String,
               imageUrl: String,
             selectedId: { type:String, notify: true },
-              selected: { type:Object, notify: true },
+              selected: { type:Object, notify: true, observer:'_onSelected' },
                   team: { type: Array },
         };
     }
@@ -54,6 +54,10 @@ class LtTeam extends PolymerElement {
         this.selectedId = this.selected.id;
 
         super.ready();
+    }
+    _onSelected(){
+        this.nickname = this.selected.nickname;
+        this.imageUrl = this.selected.imageUrl;
     }
 
     _fixPersonal(){
