@@ -1,3 +1,7 @@
+The coding challenge for interview implemented in Polymer 3.
+
+[Check it live!](https://cdn.xml4jquery.com/ajax/libs/LunchTime-polymer3/build/es5-bundled)
+
 # Setup
       npm i; rm -rf node_modules/ package-lock.json; npm i
 The second command fixes [dependency bug](https://github.com/PolymerElements/paper-button/issues/174)
