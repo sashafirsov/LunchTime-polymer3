@@ -9,7 +9,7 @@ import '@polymer/paper-radio-button/paper-radio-button.js';
 import '@polymer/paper-radio-group/paper-radio-group.js';
 
 import './shared-styles.js';
-import {matchCoffee, bookCoffee} from './match-coffee';
+import {generateLunchGroup, bookLunchGroup} from './match-lunch';
 
 class LtLunch extends PolymerElement {
     static get template() {
@@ -25,57 +25,64 @@ class LtLunch extends PolymerElement {
             </style>
     
             <div class="card" style="text-align: center">
-                <h1>Lets get coffee with someone random </h1>
-                <div>
-                    <paper-radio-button>
-                        <div> [[seeker.nickname]] </div>
-                        <img src="[[seeker.imageUrl]]"/>
-                    </paper-radio-button>
-                    <paper-radio-button>
-                        <div></div>
-                        <img src="http://www.stickpng.com/assets/images/5a01907e7ca233f48ba62720.png"/>
-                    </paper-radio-button>
-                    <paper-radio-button>
-                        <div> [[selected.nickname]]</div>
-                        <img src="[[selected.imageUrl]]"/>
-                    </paper-radio-button>
-                </div>
+                <h1>Lets get a random group to go eat lunch </h1>
+                <lt-team-list team="[[lunchCandidates]]" ></lt-team-list>  
             
-                <paper-button raised on-click="_save"> Lets go!</paper-button>
+                <paper-button raised on-click="_save"   > Lets go!</paper-button>
+                <paper-button raised on-click="_shuffle"> Shuffle </paper-button>
             </div>
-            <lt-team-list selected="{{selected}}" team="[[coffeeCandidates]]" ></lt-team-list>  
-            <hr/>  
-            <h3>Caffeinated together</h3>    
-            <lt-team-list team="[[caffeinated]]" ></lt-team-list>        
+            <template is="dom-if" if="{{candidateLunches.length}}">
+                <hr/>  
+                <h3>Past lunch groups</h3>    
+                
+                <template is="dom-repeat" items="[[candidateLunches]]">
+                    <div class="card">
+                        <lt-team-list team="[[item]]" ></lt-team-list>
+                    </div>     
+                </template>
+            </template>
+            <template is="dom-if" if="{{unengaged.length}}">
+                <h3>Unengaged yet folks</h3>    
+                <lt-team-list team="[[unengaged]]" ></lt-team-list>
+            </template>       
         `;
     }
 
     static get properties() {
         return {
             seeker: {type:Object, observer: '_seekerChanged'},
-            selected: Object,
             team: Array,
-            coffeeCandidates: Array,
-            caffeinated: {type:Array,value:[]}
+            lunchCandidates: Array,
+            luncheons: {type:Array,value:[]},
+            candidateLunches: {type:Array,value:[]},
+            unengaged: {type:Array,value:[]}
         };
     }
 
     ready() {
         this._seekerChanged();
-        this.selected = this.coffeeCandidates[0];
         super.ready();
     }
 
-    updateCaffeinated(){ this.caffeinated = this.seeker.coffeeBreaks.map( id=> this.team.find( el=> el.id===id ) ) }
+    updateLuncheons(){
+        this.candidateLunches = this.luncheons.filter( table=>table.find(chair=> chair.id === this.seeker.id) );
+        this.unengaged = this.team.filter( f=> !this.luncheons.find( table=>table.find( chair=> chair.id === f.id )
+                                                                         && table.find( chair=> chair.id === this.seeker.id ) )
+                                         );
+    }
 
     _seekerChanged(){
-        this.coffeeCandidates = matchCoffee( this.team, this.seeker );
-        this.updateCaffeinated();
+        this.lunchCandidates = generateLunchGroup( this.team, this.luncheons, this.seeker );
+        this.updateLuncheons();
+    }
+
+    _shuffle(){
+        this._seekerChanged();
     }
 
     _save() {
-        this.coffeeCandidates = bookCoffee( this.team, this.seeker, this.selected );
-        this.updateCaffeinated();
+        this.lunchCandidates = bookLunchGroup( this.lunchCandidates, this.luncheons );
+        this._shuffle();
     }
 
 }
