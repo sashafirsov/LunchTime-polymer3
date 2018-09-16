@@ -100,7 +100,8 @@ class MyApp extends PolymerElement {
                         <img src="[[selected.imageUrl]]" />
                     </div>
                 </template>  
-            </a>          
+            </a>   
+            <a name="about"  href="[[rootPath]]about" >About  </a>
          </iron-selector>
          <div class="disclaimer">
          Images by <a href="http://www.stickpng.com/es/cat/al-cine/dibujos-animados/blancanieves?page=1">stickpng.com</a><br/>
@@ -125,6 +126,7 @@ class MyApp extends PolymerElement {
             <lt-coffee  name="coffee" team="[[team]]"  seeker="[[selected]]"   ></lt-coffee>
             <lt-lunch   name="lunch"  team="[[team]]"  seeker="[[selected]]"   ></lt-lunch>
             <lt-team    name="team"   team="[[team]]"  selected="{{selected}}" ></lt-team>
+            <lt-about   name="about" ></lt-about>
             <my-view404 name="view404"></my-view404>
           </iron-pages>
         </app-header-layout>
@@ -213,7 +215,7 @@ class MyApp extends PolymerElement {
         // Show 'team' in that case. And if the page doesn't exist, show 'view404'.
         if (!page) {
             this.page = 'team';
-        } else if ([ 'coffee', 'lunch', 'team', 'view1', 'view2', 'view3' ].indexOf(page) !== -1) {
+        } else if ([ 'coffee', 'lunch', 'team', 'about', 'view1', 'view2', 'view3' ].indexOf(page) !== -1) {
             if( !this.selected && page!== 'team' )
                 return this.set('routeData.page','team');
             this.page = page;
@@ -250,6 +252,9 @@ class MyApp extends PolymerElement {
                 break;
             case 'lunch':
                 import('./lt-lunch.js');
+                break;
+            case 'about':
+                import('./lt-about.js');
                 break;
             case 'view404':
                 import('./my-view404.js');
