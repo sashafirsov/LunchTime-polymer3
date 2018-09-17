@@ -25,28 +25,35 @@ class LtCoffee extends PolymerElement {
             </style>
     
             <div class="card" style="text-align: center">
-                <h1>Lets get coffee with someone random </h1>
-                <div>
-                    <paper-radio-button>
-                        <div> [[seeker.nickname]] </div>
-                        <img src="[[seeker.imageUrl]]"/>
-                    </paper-radio-button>
-                    <paper-radio-button>
-                        <div></div>
-                        <img src="http://www.stickpng.com/assets/images/5a01907e7ca233f48ba62720.png"/>
-                    </paper-radio-button>
-                    <paper-radio-button>
-                        <div> [[selected.nickname]]</div>
-                        <img src="[[selected.imageUrl]]"/>
-                    </paper-radio-button>
-                </div>
-            
-                <paper-button raised on-click="_save"> Lets go!</paper-button>
+                <template is="dom-if" if="{{coffeeCandidates.length}}">
+                    <h1>Lets get coffee with someone random </h1>
+                    <div>
+                        <paper-radio-button>
+                            <div> [[seeker.nickname]] </div>
+                            <img src="[[seeker.imageUrl]]"/>
+                        </paper-radio-button>
+                        <paper-radio-button>
+                            <div></div>
+                            <img src="http://www.stickpng.com/assets/images/5a01907e7ca233f48ba62720.png"/>
+                        </paper-radio-button>
+                        <paper-radio-button>
+                            <div> [[selected.nickname]]</div>
+                            <img src="[[selected.imageUrl]]"/>
+                        </paper-radio-button>
+                    </div>
+                
+                    <paper-button raised on-click="_save"> Lets go!</paper-button>
+                </template>
+                <template is="dom-if" if="{{!coffeeCandidates.length}}">
+                    <p>You've already caffeinated with everyone! Try <a href="./lunch" >lunch</a> instead.</p>
+                </template>
             </div>
             <lt-team-list selected="{{selected}}" team="[[coffeeCandidates]]" ></lt-team-list>  
-            <hr/>  
-            <h3>Caffeinated together</h3>    
-            <lt-team-list team="[[caffeinated]]" ></lt-team-list>        
+            <template is="dom-if" if="{{caffeinated.length}}">
+                <hr/>  
+                <h3>Caffeinated together</h3>    
+                <lt-team-list team="[[caffeinated]]" ></lt-team-list>  
+            </template>      
         `;
     }
 
