@@ -53,7 +53,7 @@ class LtLunch extends PolymerElement {
             seeker: {type:Object, observer: '_seekerChanged'},
             team: Array,
             lunchCandidates: Array,
-            luncheons: {type:Array,value:[]},
+            luncheons: {type:Array,value:[], notify: true },
             candidateLunches: {type:Array,value:[]},
             unengaged: {type:Array,value:[]}
         };
@@ -81,7 +81,7 @@ class LtLunch extends PolymerElement {
     }
 
     _save() {
-        this.lunchCandidates = bookLunchGroup( this.lunchCandidates, this.luncheons );
+        this.push( 'luncheons', this.lunchCandidates );
         this._shuffle();
     }
 

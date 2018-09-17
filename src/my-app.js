@@ -18,6 +18,7 @@ import '@polymer/app-layout/app-scroll-effects/app-scroll-effects.js';
 import '@polymer/app-layout/app-toolbar/app-toolbar.js';
 import '@polymer/app-route/app-location.js';
 import '@polymer/app-route/app-route.js';
+import '@polymer/app-storage/app-localstorage/app-localstorage-document.js';
 import '@polymer/iron-pages/iron-pages.js';
 import '@polymer/iron-selector/iron-selector.js';
 import '@polymer/paper-icon-button/paper-icon-button.js';
@@ -79,9 +80,11 @@ class MyApp extends PolymerElement {
       <app-location route="{{route}}" url-space-regex="^[[rootPath]]">
       </app-location>
 
-      <app-route route="{{route}}" pattern="[[rootPath]]:page" data="{{routeData}}" tail="{{subroute}}">
-      </app-route>
-
+      <app-route route="{{route}}" pattern="[[rootPath]]:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
+      
+      <app-localstorage-document key="team"      data="{{team}}"      ></app-localstorage-document>
+      <app-localstorage-document key="luncheons" data="{{luncheons}}" ></app-localstorage-document>
+      
       <app-drawer-layout fullbleed="" narrow="{{narrow}}">
         <!-- Drawer content -->
         <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
@@ -99,7 +102,7 @@ class MyApp extends PolymerElement {
                         I am [[selected.nickname]]
                         <img src="[[selected.imageUrl]]" />
                     </div>
-                </template>  
+                </template>
             </a>   
             <a name="about"  href="[[rootPath]]about" >About  </a>
          </iron-selector>
@@ -123,9 +126,9 @@ class MyApp extends PolymerElement {
             <!--<my-view1 name="view1"></my-view1>-->
             <!--<my-view2 name="view2"></my-view2>-->
             <!--<my-view3 name="view3"></my-view3>-->
-            <lt-coffee  name="coffee" team="[[team]]"  seeker="[[selected]]"   ></lt-coffee>
-            <lt-lunch   name="lunch"  team="[[team]]"  seeker="[[selected]]"   ></lt-lunch>
-            <lt-team    name="team"   team="[[team]]"  selected="{{selected}}" ></lt-team>
+            <lt-coffee  name="coffee" team="{{team}}"  seeker="[[selected]]"   ></lt-coffee>
+            <lt-lunch   name="lunch"  team="[[team]]"  seeker="[[selected]]"   luncheons="{{luncheons}}"></lt-lunch>
+            <lt-team    name="team"   team="{{team}}"  selected="{{selected}}" ></lt-team>
             <lt-about   name="about" ></lt-about>
             <my-view404 name="view404"></my-view404>
           </iron-pages>
@@ -144,6 +147,7 @@ class MyApp extends PolymerElement {
             routeData: Object,
             subroute: Object,
             selected: Object,
+            luncheons: {type:Array,value:[], notify: true },
             team: {
                 type: Array,
                 value:

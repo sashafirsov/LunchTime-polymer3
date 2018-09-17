@@ -43,7 +43,7 @@ class LtTeam extends PolymerElement {
               imageUrl: String,
             selectedId: { type:String, notify: true },
               selected: { type:Object, notify: true, observer:'_onSelected' },
-                  team: { type: Array },
+                  team: { type: Array, notify: true  },
         };
     }
     ready() {
