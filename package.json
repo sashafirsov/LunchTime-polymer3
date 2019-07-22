@@ -1,9 +1,13 @@
 {
-  "name": "polymer-starter-kit",
-  "version": "4.0.0",
-  "description": "A starting point for Polymer apps",
-  "author": "The Polymer Authors",
-  "license": "BSD-3-Clause",
+  "name": "lunchtime-polymer3",
+  "version": "1.0.0",
+  "description": "Team making with 7 dwarfs and Snow White over coffee and lunch. Polymer 3 interview exercise. Micro-frontend sample.",
+  "author": {
+    "name": "Sasha Firsov",
+    "email": "suns@simulationworks.com",
+    "url": "https://blog.firsov.net/"
+  },
+  "license": "Apache-2.0",
   "repository": "Polymer/polymer-starter-kit",
   "scripts": {
     "start": "polymer serve",
@@ -13,26 +17,26 @@
     "test:integration": "polymer build # test that psk builds without error with the CLI"
   },
   "dependencies": {
-    "@polymer/app-layout": "^3.0.0-pre.15",
-    "@polymer/app-route": "^3.0.0-pre.15",
+    "@polymer/app-layout": "^3.1.0",
+    "@polymer/app-route": "^3.0.2",
     "@polymer/app-storage": "^3.0.2",
-    "@polymer/iron-flex-layout": "^3.0.0-pre.15",
-    "@polymer/iron-iconset-svg": "^3.0.0-pre.15",
-    "@polymer/iron-media-query": "^3.0.0-pre.15",
-    "@polymer/iron-pages": "^3.0.0-pre.15",
-    "@polymer/iron-selector": "^3.0.0-pre.15",
-    "@polymer/paper-button": "^3.0.0",
+    "@polymer/iron-flex-layout": "^3.0.1",
+    "@polymer/iron-iconset-svg": "^3.0.1",
+    "@polymer/iron-media-query": "^3.0.1",
+    "@polymer/iron-pages": "^3.0.1",
+    "@polymer/iron-selector": "^3.0.1",
+    "@polymer/paper-button": "^3.0.1",
     "@polymer/paper-elements": "0.0.3",
-    "@polymer/paper-icon-button": "^3.0.0-pre.15",
-    "@polymer/paper-input": "^3.0.0",
-    "@polymer/paper-radio-button": "^3.0.0",
-    "@polymer/paper-radio-group": "^3.0.0",
-    "@polymer/polymer": "^3.0.0",
-    "@webcomponents/webcomponentsjs": "^2.0.0"
+    "@polymer/paper-icon-button": "^3.0.2",
+    "@polymer/paper-input": "^3.0.2",
+    "@polymer/paper-radio-button": "^3.0.1",
+    "@polymer/paper-radio-group": "^3.0.1",
+    "@polymer/polymer": "^3.3.0",
+    "@webcomponents/webcomponentsjs": "^2.2.10"
   },
   "devDependencies": {
-    "polymer-cli": "^1.7.1",
-    "wct-browser-legacy": "^1.0.0"
+    "polymer-cli": "^1.9.11",
+    "wct-browser-legacy": "^1.0.2"
   },
   "engines": {
     "node": ">=8.0"
