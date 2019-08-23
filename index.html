@@ -71,13 +71,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       * to indicate the path from which you'll be serving, including leading
       * and trailing slashes (e.g., `/my-app/`).
       */
-      window.MyAppGlobals = { rootPath: location.pathname.substring(0, location.pathname.lastIndexOf('/')+1) };
+      window.MyAppGlobals = { rootPath: '/' };
+      // build.sh would replace root path with CDN deployment URL for running as microapplication (embedded into another page)
+      // window.MyAppGlobals = { rootPath: location.pathname.substring(0, location.pathname.lastIndexOf('/')+1) };
+      // uncomment line above if want app served from different URLs or when URL is not defined.
 
       // Load and register pre-caching Service Worker
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
           navigator.serviceWorker.register('service-worker.js', {
-            scope: MyAppGlobals.rootPath
+            scope: window.MyAppGlobals.rootPath
           });
         });
       }
