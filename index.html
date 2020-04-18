@@ -87,10 +87,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </script>
 
     <!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
-    <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+<!--    <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>-->
+
+
+    <script src="https://cdn.xml4jquery.com/web-elements-loader/build/esm-unbundled/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script type="module"
+            src="https://cdn.xml4jquery.com/web-elements-loader/build/esm-unbundled/src/web-elemens-loader.js"></script>
+
+
 
     <!-- Load your application shell -->
-    <script type="module" src="src/my-app.js"></script>
+<!--    <script type="module" src="src/my-app.js"></script>-->
 
     <!-- Add any global styles for body, document, etc. -->
     <style>
@@ -104,7 +111,41 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
   </head>
   <body>
-    <my-app></my-app>
+    <web-elemens-loader
+            id="webElementsLoader"
+            selection="
+@epa-wg/polymer-element,
+@polymer/app-layout/app-drawer/app-drawer,
+@polymer/app-layout/app-drawer-layout/app-drawer-layout,
+@polymer/app-layout/app-header/app-header,
+@polymer/app-layout/app-header-layout/app-header-layout,
+@polymer/app-layout/app-scroll-effects/app-scroll-effects,
+@polymer/app-layout/app-toolbar/app-toolbar,
+@polymer/app-route/app-location,
+@polymer/app-route/app-route,
+@polymer/app-storage/app-localstorage/app-localstorage-document,
+@polymer/iron-pages,
+@polymer/iron-selector/iron-selector,
+@polymer/paper-icon-button/paper-icon-button,
+
+@polymer/paper-radio-button,
+@polymer/paper-radio-group,
+
+@polymer/paper-input/paper-input,
+@polymer/paper-button,
+@polymer/paper-radio-button,
+@polymer/paper-radio-group,
+
+    ">
+      <my-app></my-app>
+    </web-elemens-loader>
+
+<script type="module">
+  webElementsLoader.promise.then( x=>
+  {
+    import("./src/my-app.js");
+  });
+</script>
     <noscript>
       Please enable JavaScript to view this website.
     </noscript>

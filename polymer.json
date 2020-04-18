@@ -1,4 +1,5 @@
 {
+  "componentDir": "https://cdn.xml4jquery.com/web-elements-loader/build/esm-unbundled/node_modules/",
   "entrypoint": "index.html",
   "shell": "src/my-app.js",
   "sources": [

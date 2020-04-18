@@ -1,27 +1,6 @@
-/**
- * @license
- * Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
- * This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
- * The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
- * The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
- * Code distributed by Google as part of the polymer project is also
- * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
- */
-
-import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
-import {setPassiveTouchGestures, setRootPath} from '@polymer/polymer/lib/utils/settings.js';
-import '@polymer/app-layout/app-drawer/app-drawer.js';
-import '@polymer/app-layout/app-drawer-layout/app-drawer-layout.js';
-import '@polymer/app-layout/app-header/app-header.js';
-import '@polymer/app-layout/app-header-layout/app-header-layout.js';
-import '@polymer/app-layout/app-scroll-effects/app-scroll-effects.js';
-import '@polymer/app-layout/app-toolbar/app-toolbar.js';
-import '@polymer/app-route/app-location.js';
-import '@polymer/app-route/app-route.js';
-import '@polymer/app-storage/app-localstorage/app-localstorage-document.js';
-import '@polymer/iron-pages/iron-pages.js';
-import '@polymer/iron-selector/iron-selector.js';
-import '@polymer/paper-icon-button/paper-icon-button.js';
+import {PolymerElement, html} from 'https://cdn.xml4jquery.com/web-elements-loader/build/esm-unbundled/node_modules/@polymer/polymer/polymer-element.js';
+import {setPassiveTouchGestures, setRootPath} from 'https://cdn.xml4jquery.com/web-elements-loader/build/esm-unbundled/node_modules/@polymer/polymer/lib/utils/settings.js';
+import  'https://cdn.xml4jquery.com/web-elements-loader/build/esm-unbundled/node_modules/@polymer/app-layout/app-drawer/app-drawer.js';
 import './my-icons.js';
 
 // Gesture events like tap and track generated from touch will not be
@@ -239,15 +218,6 @@ class MyApp extends PolymerElement {
         // Note: `polymer build` doesn't like string concatenation in the import
         // statement, so break it up.
         switch (page) {
-            case 'view1':
-                import('./my-view1.js');
-                break;
-            case 'view2':
-                import('./my-view2.js');
-                break;
-            case 'view3':
-                import('./my-view3.js');
-                break;
             case 'team':
                 import('./lt-team.js');
                 break;

@@ -13,32 +13,10 @@
     "start": "polymer serve",
     "build": "polymer build",
     "lint": "polymer lint",
-    "test": "polymer test",
     "test:integration": "polymer build # test that psk builds without error with the CLI"
   },
-  "dependencies": {
-    "@polymer/app-layout": "^3.1.0",
-    "@polymer/app-route": "^3.0.2",
-    "@polymer/app-storage": "^3.0.2",
-    "@polymer/iron-flex-layout": "^3.0.1",
-    "@polymer/iron-iconset-svg": "^3.0.1",
-    "@polymer/iron-media-query": "^3.0.1",
-    "@polymer/iron-pages": "^3.0.1",
-    "@polymer/iron-selector": "^3.0.1",
-    "@polymer/paper-button": "^3.0.1",
-    "@polymer/paper-elements": "0.0.3",
-    "@polymer/paper-icon-button": "^3.0.2",
-    "@polymer/paper-input": "^3.0.2",
-    "@polymer/paper-radio-button": "^3.0.1",
-    "@polymer/paper-radio-group": "^3.0.1",
-    "@polymer/polymer": "^3.3.0",
-    "@webcomponents/webcomponentsjs": "^2.2.10"
-  },
-  "devDependencies": {
-    "polymer-cli": "^1.9.11",
-    "replace-in-file": "^4.1.0",
-    "wct-browser-legacy": "^1.0.2"
-  },
+  "dependencies": {},
+  "devDependencies": {},
   "engines": {
     "node": ">=8.0"
   }

@@ -2,11 +2,11 @@
  * team list with add and change member ability
  */
 
-import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
-import '@polymer/paper-input/paper-input.js';
-import '@polymer/paper-button/paper-button.js';
-import '@polymer/paper-radio-button/paper-radio-button.js';
-import '@polymer/paper-radio-group/paper-radio-group.js';
+import {PolymerElement, html} from 'https://cdn.xml4jquery.com/web-elements-loader/build/esm-unbundled/node_modules/@polymer/polymer/polymer-element.js';
+import 'https://cdn.xml4jquery.com/web-elements-loader/build/esm-unbundled/node_modules/@polymer/paper-input/paper-input.js';
+import 'https://cdn.xml4jquery.com/web-elements-loader/build/esm-unbundled/node_modules/@polymer/paper-button/paper-button.js';
+import 'https://cdn.xml4jquery.com/web-elements-loader/build/esm-unbundled/node_modules/@polymer/paper-radio-button/paper-radio-button.js';
+import 'https://cdn.xml4jquery.com/web-elements-loader/build/esm-unbundled/node_modules/@polymer/paper-radio-group/paper-radio-group.js';
 
 import './shared-styles.js';
 import './lt-team-list.js';
