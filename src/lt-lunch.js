@@ -9,7 +9,7 @@ import 'https://cdn.xml4jquery.com/web-elements-loader/build/esm-unbundled/node_
 import 'https://cdn.xml4jquery.com/web-elements-loader/build/esm-unbundled/node_modules/@polymer/paper-radio-group/paper-radio-group.js';
 
 import './shared-styles.js';
-import {generateLunchGroup, bookLunchGroup} from './match-lunch';
+import {generateLunchGroup, bookLunchGroup} from './match-lunch.js';
 
 class LtLunch extends PolymerElement {
     static get template() {

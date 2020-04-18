@@ -9,7 +9,7 @@ import 'https://cdn.xml4jquery.com/web-elements-loader/build/esm-unbundled/node_
 import 'https://cdn.xml4jquery.com/web-elements-loader/build/esm-unbundled/node_modules/@polymer/paper-radio-group/paper-radio-group.js';
 
 import './shared-styles.js';
-import {matchCoffee, bookCoffee} from './match-coffee';
+import {matchCoffee, bookCoffee} from './match-coffee.js';
 
 class LtCoffee extends PolymerElement {
     static get template() {
