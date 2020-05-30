@@ -60,7 +60,7 @@ class LtTeam extends PolymerElement {
         if( !this.nickname )
             this.nickname = "Anonymous";
         if( !this.imageUrl )
-            this.imageUrl = "http://www.stickpng.com/assets/images/5874cfb542e4d628738559e5.png";
+            this.imageUrl = "images/Witch.png";
     }
     _save(){
         this._fixPersonal();

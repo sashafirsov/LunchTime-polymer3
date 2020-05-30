@@ -34,7 +34,7 @@ class LtCoffee extends PolymerElement {
                         </paper-radio-button>
                         <paper-radio-button>
                             <div></div>
-                            <img src="http://www.stickpng.com/assets/images/5a01907e7ca233f48ba62720.png"/>
+                            <img src="images/coffee.png"/>
                         </paper-radio-button>
                         <paper-radio-button>
                             <div> [[selected.nickname]]</div>

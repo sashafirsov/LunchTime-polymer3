@@ -135,49 +135,49 @@ class MyApp extends PolymerElement {
                             id: 1,
                             nickname: 'Snow ',
                             coffeeBreaks:[],
-                            imageUrl: 'http://www.stickpng.com/assets/images/5874d04142e4d628738559ee.png'
+                            imageUrl: 'images/SnowWhite.png'
                         },
                         {
                             id: 2,
                             nickname: 'Sneeze',
                             coffeeBreaks:[],
-                            imageUrl: 'http://www.stickpng.com/assets/images/5874d0a042e4d628738559f0.png'
+                            imageUrl: 'images/Sneeze.png'
                         },
                         {
                             id: 3,
                             nickname: 'Bashful',
                             coffeeBreaks:[],
-                            imageUrl: 'http://www.stickpng.com/assets/images/5874d0ac42e4d628738559f1.png'
+                            imageUrl: 'images/Bashful.png'
                         },
                         {
                             id: 4,
                             nickname: 'Dopey',
                             coffeeBreaks:[],
-                            imageUrl: 'http://www.stickpng.com/assets/images/5874d0cb42e4d628738559f2.png'
+                            imageUrl: 'images/Dopey.png'
                         },
                         {
                             id: 5,
                             nickname: 'Grumpy',
                             coffeeBreaks:[],
-                            imageUrl: 'http://www.stickpng.com/assets/images/5874d0d642e4d628738559f3.png'
+                            imageUrl: 'images/Grumpy.png'
                         },
                         {
                             id: 6,
                             nickname: 'Sleepy',
                             coffeeBreaks:[],
-                            imageUrl: 'http://www.stickpng.com/assets/images/5874d02942e4d628738559ec.png'
+                            imageUrl: 'images/Sleepy.png'
                         },
                         {
                             id: 7,
                             nickname: 'Doc',
                             coffeeBreaks:[],
-                            imageUrl: 'http://www.stickpng.com/assets/images/5874cfce42e4d628738559e7.png'
+                            imageUrl: 'images/Doc.png'
                         },
                         {
                             id: 8,
                             nickname: 'Happy',
                             coffeeBreaks:[],
-                            imageUrl: 'http://www.stickpng.com/assets/images/5874d00c42e4d628738559ea.png'
+                            imageUrl: 'images/Happy.png'
                         }
                     ]
 
